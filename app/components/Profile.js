@@ -16,8 +16,7 @@ var Profile = React.createClass({
       repos: []
     }
   },
-  componentDidMount: function(){
-    this.ref = new Firebase('https://mateo-react.firebaseio.com/');
+  init: function(){
     var childRef = this.ref.child(this.getParams().username);
     this.bindAsArray(childRef, 'notes');
 
@@ -28,6 +27,14 @@ var Profile = React.createClass({
           repos: dataObj.repos
         });
       }.bind(this));
+  },
+  componentDidMount: function(){
+    this.ref = new Firebase('https://mateo-react.firebaseio.com/');
+    this.init();
+  },
+  componentWillReceiveProps: function(){
+    this.unbind('notes');
+    this.init();
   },
   componentWillUnmount: function(){
     this.unbind('notes');
