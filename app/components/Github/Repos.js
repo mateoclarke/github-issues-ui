@@ -26,4 +26,4 @@ Repos.propTypes = {
   repos: React.PropTypes.array.isRequired,
 }
 
-exports default Repos;
+export default Repos;
