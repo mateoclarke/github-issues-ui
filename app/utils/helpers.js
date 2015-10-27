@@ -1,20 +1,16 @@
 var axios = require('axios');
+var config = require('../config.json');
 
-function getRepos(username){
-  return axios.get('https://api.github.com/users/' + username + '/repos');
-};
-
-function getUserInfo(username){
-  return axios.get('https://api.github.com/users/' + username);
+function getIssues(issueNumber){
+  return axios.get(config.base_endpoint + "repos/" + config.username + config.repo + "issues");
 };
 
 var helpers = {
-  getGithubInfo: function(username){
-      return axios.all([getRepos(username), getUserInfo(username)])
+  getGithubInfo: function(issueNumber){
+      return axios.all([getIssues(issueNumber)])
         .then(function(arr){
           return {
-            repos: arr[0].data,
-            bio: arr[1].data
+            issues: arr[0].data,
           }
         });
   }

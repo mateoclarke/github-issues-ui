@@ -1,13 +1,10 @@
 var React = require('react');
 var Router = require('react-router');
-var UserProfiles = require('./Github/UserProfiles');
-var Repos = require('./Github/Repos');
-var Notes = require('./Notes/Notes');
 var ReactFireMixin = require('reactfire');
 var Firebase = require('firebase');
 var helpers = require('../utils/helpers');
 
-var Profile = React.createClass({
+var Issue = React.createClass({
   mixins: [Router.State, ReactFireMixin],
   getInitialState: function(){
     return {
@@ -63,4 +60,4 @@ var Profile = React.createClass({
   }
 });
 
-module.exports = Profile;
+module.exports = Issue;
